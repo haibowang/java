@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>parent</name>
+  <description>This is the parent module for Java subprojects. It configures all dependency versions.</description>
+  <packaging>pom</packaging>
+
+  <groupId>de.haibowang.java</groupId>
+  <artifactId>parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+  <scm>
+    <connection></connection>
+    <developerConnection></developerConnection>
+    <url></url>
+  </scm>
+
+  <properties>
+  </properties>
+
+  <inceptionYear>2017</inceptionYear>
+
+  <organization>
+    <name>Zaeme AG</name>
+    <url>http://www.zaeme.com</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <id>haibo.wang</id>
+      <name>Haibo Wang</name>
+      <email>haibo.wang@zaeme.com</email>
+      <organization>Zaeme AG</organization>
+      <url>http://www.zaeme.com</url>
+    </developer>
+  </developers>
+
+  <issueManagement>
+    <system>Jira</system>
+    <url>https://jira.zaeme.com/browse/multi</url>
+  </issueManagement>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>2.16</version>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>2.5.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven.javadoc.plugin</artifactId>
+        <version>2.10.3</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>2.19.1</version>
+        <reportSets>
+           <reportSet>
+             <id>integration-tests</id>
+             <reports>
+               <report>failsafe-report-only</report>
+             </reports>
+           </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <!-- All dependencies from a-z. Note: Do specify the required 
+       version of a dependency here, but NOT in any sub pom.xml.
+       Only the groupId and artifactId is required.  -->
+  
+  <dependencyManagement>
+    <dependencies>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+      	<plugin>
+      		<groupId>org.apache.maven.plugins</groupId>
+      		<artifactId>maven-compiler-plugin</artifactId>
+      		<configuration>
+      			<source>1.8</source>
+      			<target>1.8</target>
+      		</configuration>
+      	</plugin>
+        <plugin>
+          <groupId>org.codehaus.sonar</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <version>5.1</version> 
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resource-plugin</artifactId>
+          <version>2.5</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>1.4</version>
+        <executions>
+          <execution>
+            <id>enforce-versions</id>
+            <goals>
+	      <goal>enforce</goal>
+            </goals>
+            <configuration>
+               <rules>
+                 <requireMavenVersion>
+                   <version>[3.3.3,)</version>
+                 </requireMavenVersion>
+                 <requireJavaVersion>
+                   <version>1.8</version>
+                 </requireJavaVersion>
+               </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
